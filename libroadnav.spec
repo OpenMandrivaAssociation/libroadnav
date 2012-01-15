@@ -80,7 +80,5 @@ autoreconf -fi
 %{_includedir}/%{name}
 %{_libdir}/*.so
 %{_libdir}/*.a
-%if %{mdvver} <= 201100
 %{_libdir}/*.la
-%endif
 
