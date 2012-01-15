@@ -1,11 +1,11 @@
-%define	major 0
-%define libname	%mklibname roadnav %{major}
-%define develname %mklibname -d roadnav
+%define		major 0
+%define		libname	%mklibname roadnav %{major}
+%define		develname %mklibname -d roadnav
 
 Summary:	A GPS mapping data library
 Name:		libroadnav
 Version:	0.20
-Release:	%mkrel 0.0.alpha.1
+Release:	%mkrel 0.0.alpha.2
 Group:		System/Libraries
 License:	LGPL
 URL:		http://roadnav.sourceforge.net/
@@ -13,8 +13,7 @@ Source0:	http://roadnav.sourceforge.net/prerel/%{name}-%{version}alpha.tar.gz
 Patch0:		libroadnav-0.20alpha-shared.diff
 BuildRequires:	autoconf
 BuildRequires:	libtool
-BuildRequires:	wxGTK-devel >= 2.6.2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	wxgtku-devel
 
 %description
 LibRoadnav is a library that makes mapping data easily accessible to 
@@ -25,7 +24,7 @@ produce turn by turn directions from one place in the US to another.
 
 %package -n	%{libname}
 Summary:	A GPS mapping data library
-Group:          System/Libraries
+Group:		System/Libraries
 
 %description -n	%{libname}
 LibRoadnav is a library that makes mapping data easily accessible to 
@@ -57,29 +56,19 @@ to compile applications such as roadnav, etc.
 
 %build
 autoreconf -fi
-
 %configure2_5x
-
 %make
 
 %install
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %makeinstall_std
 
 # cleanup
-rm -rf %{buildroot}%{_datadir}/doc/%{name}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
+%__rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -91,5 +80,7 @@ rm -rf %{buildroot}
 %{_includedir}/%{name}
 %{_libdir}/*.so
 %{_libdir}/*.a
+%if %{mdvver} <= 201100
 %{_libdir}/*.la
+%endif
 
