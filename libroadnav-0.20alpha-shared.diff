@@ -1,0 +1,52 @@
+diff -Naur libroadnav-0.20alpha/samples/wx/minimal/Makefile.am libroadnav-0.20alpha.oden/samples/wx/minimal/Makefile.am
+--- libroadnav-0.20alpha/samples/wx/minimal/Makefile.am	2008-06-09 02:08:12.000000000 +0200
++++ libroadnav-0.20alpha.oden/samples/wx/minimal/Makefile.am	2010-09-22 09:29:09.466203578 +0200
+@@ -12,7 +12,7 @@
+ minimal_SOURCES = minimal.cpp
+ 
+ minimal_LDADD =  \
+-	../../../src/libroadnav.a\
++	../../../src/libroadnav.la\
+ 	$(WX_LIBS)
+ 
+ minimal$(EXEEXT): $(minimal_OBJECTS) $(minimal_DEPENDENCIES)
+diff -Naur libroadnav-0.20alpha/samples/wx/savemap/Makefile.am libroadnav-0.20alpha.oden/samples/wx/savemap/Makefile.am
+--- libroadnav-0.20alpha/samples/wx/savemap/Makefile.am	2008-06-09 02:08:12.000000000 +0200
++++ libroadnav-0.20alpha.oden/samples/wx/savemap/Makefile.am	2010-09-22 09:29:21.873154784 +0200
+@@ -12,7 +12,7 @@
+ savemap_SOURCES = savemap.cpp
+ 
+ savemap_LDADD =  \
+-	../../../src/libroadnav.a\
++	../../../src/libroadnav.la\
+ 	$(WX_LIBS)
+ 
+ savemap$(EXEEXT): $(savemap_OBJECTS) $(savemap_DEPENDENCIES)
+diff -Naur libroadnav-0.20alpha/src/Makefile.am libroadnav-0.20alpha.oden/src/Makefile.am
+--- libroadnav-0.20alpha/src/Makefile.am	2008-06-09 02:08:12.000000000 +0200
++++ libroadnav-0.20alpha.oden/src/Makefile.am	2010-09-22 09:33:44.507185780 +0200
+@@ -6,9 +6,9 @@
+ 	 -Wall\
+ 	 -O2
+ 
+-lib_LIBRARIES = libroadnav.a
++lib_LTLIBRARIES = libroadnav.la
+ 
+-libroadnav_a_SOURCES = \
++libroadnav_la_SOURCES = \
+ 	Address.cpp\
+ 	Angle.cpp\
+ 	AutoComplete.cpp\
+@@ -68,6 +68,12 @@
+ 	Portability.h\
+ 	MapPolygon.cpp
+ 
++libroadnav_la_CFLAGS = 
++
++libroadnav_la_LIBADD = @LTLIBOBJS@ $(SYS_LIBS)
++
++libroadnav_la_LDFLAGS = -version-info 0:0:0
++
+ EXTRA_DIST = \
+ 	Doxyfile \
+ 	MainPage.txt
