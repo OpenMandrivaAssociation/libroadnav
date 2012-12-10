@@ -5,7 +5,7 @@
 Summary:	A GPS mapping data library
 Name:		libroadnav
 Version:	0.20
-Release:	%mkrel 0.0.alpha.2
+Release:	0.0.alpha.3
 Group:		System/Libraries
 License:	LGPL
 URL:		http://roadnav.sourceforge.net/
@@ -36,7 +36,7 @@ produce turn by turn directions from one place in the US to another.
 %package -n	%{develname}
 Summary:	Static library and header files for the libroadnav library
 Group:		Development/C++
-Provides:	%{name}-devel = %{version}
+Provides:	%{name}-devel = %{EVRD}
 Requires:	%{libname} >= %{version}-%{release}
 
 %description -n	%{develname}
@@ -60,25 +60,31 @@ autoreconf -fi
 %make
 
 %install
-%__rm -rf %{buildroot}
-
 %makeinstall_std
 
 # cleanup
 %__rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
-%clean
-%__rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/*.so
 %{_libdir}/*.a
-%{_libdir}/*.la
 
+
+
+%changelog
+* Sun Jan 15 2012 Andrey Bondrov <abondrov@mandriva.org> 0.20-0.0.alpha.2mdv2011.0
++ Revision: 760925
+- Rebuild against utf8 wxGTK2.8, spec cleanup
+
+* Wed Sep 22 2010 Oden Eriksson <oeriksson@mandriva.com> 0.20-0.0.alpha.1mdv2011.0
++ Revision: 580496
+- import libroadnav
+
+
+* Wed Sep 22 2010 Oden Eriksson <oeriksson@mandriva.com> 0.20-0.0.alpha.1mdv2010.1
+- initial Mandriva package
