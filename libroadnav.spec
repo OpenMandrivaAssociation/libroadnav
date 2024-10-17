@@ -8,7 +8,7 @@ Version:	0.20
 Release:	0.0.alpha.4
 License:	LGPLv2.1+
 Group:		System/Libraries
-Url:		http://roadnav.sourceforge.net/
+Url:		https://roadnav.sourceforge.net/
 Source0:	http://roadnav.sourceforge.net/prerel/%{name}-%{version}alpha.tar.gz
 Patch0:		libroadnav-0.20alpha-shared.diff
 BuildRequires:	libtool
