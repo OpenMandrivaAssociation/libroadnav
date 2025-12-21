@@ -11,6 +11,11 @@ Group:		System/Libraries
 Url:		https://roadnav.sourceforge.net/
 Source0:	http://roadnav.sourceforge.net/prerel/%{name}-%{version}alpha.tar.gz
 Patch0:		libroadnav-0.20alpha-shared.diff
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libtool
 BuildRequires:	wxgtku2.8-devel
 
